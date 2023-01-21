@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import ChessBoard from "./components/ChessBoard/ChessBoard";
 
-test('get h1 hello', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/hello/i);
+test('Render Chessboard', () => {
+  render(<ChessBoard />);
+  const linkElement = screen.getByText(/Click on to cell for Possibility knight Position/i);
   expect(linkElement).toBeInTheDocument();
 });
