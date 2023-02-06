@@ -5,7 +5,7 @@ function calculateKnightMove(knightPosition: {x: number, y: number}, BOARD_SIZE:
 
     let allPossiableMove = [];
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < BOARD_SIZE; i++) {
         // *****************************
         // step for x axios
         // check forward x direction and both of y haft direction
@@ -76,6 +76,7 @@ function calculateKnightMove(knightPosition: {x: number, y: number}, BOARD_SIZE:
     return makeUniqueArrOfObject(allPossiableMove)
 }
 
+// store only unique index position pair
 function makeUniqueArrOfObject(arr: {x: number, y: number}[]){
     let uniqueArr: {x: number, y: number}[] = []
     arr.forEach(item=>{
@@ -86,7 +87,7 @@ function makeUniqueArrOfObject(arr: {x: number, y: number}[]){
     })
     return uniqueArr
 }
-
+// this func increment current index to forward two index
 function incIndex(num: number, step: number) {
     let result = num;
     for (let i = 0; i < step; i++) {
@@ -95,6 +96,7 @@ function incIndex(num: number, step: number) {
     return result;
 }
 
+// this func decrement current index to forward two index
 function decIndex(num: number, step: number) {
     let result = num;
     for (let i = 0; i < step; i++) {
@@ -103,6 +105,7 @@ function decIndex(num: number, step: number) {
     return result;
 }
 
+// this func increment current index to forward one index for y and x axios
 function haftMove(currentIndex: number, direction = 1) {
     if (direction === 1) {
         return incIndex(currentIndex, 1);

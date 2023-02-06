@@ -36,10 +36,10 @@ const ChessBoard = () => {
 
 
 
-    function markPossibleMove(x: number, y: number) {
+    function markPossibleMove(xAxiosIndex: number, yAxiosIndex: number) {
         let className = "";
         possibleMove.forEach((item) => {
-            if (item.x === x && item.y === y) {
+            if (item.x === xAxiosIndex && item.y === yAxiosIndex) {
                 className = "!bg-green-500";
             }
         });
@@ -48,19 +48,19 @@ const ChessBoard = () => {
 
 
     // set KnightPosition when user click on chess cell
-    function handleSetKnightPosition(rowIndex: number, colIndex: number){
+    function handleSetKnightPosition(xAxiosIndex: number, yAxiosIndex: number){
         setKnightPosition({
-            x: rowIndex,
-            y: colIndex
+            x: xAxiosIndex,
+            y: yAxiosIndex
         })
     }
 
 
     // render knight position
-    function renderKnight(rowIndex: number, colIndex: number){
+    function renderKnight(xAxiosIndex: number, yAxiosIndex: number){
         return (
             <div className="w-full h-full object-contain p-2">
-                {knightPosition.x === rowIndex && knightPosition.y === colIndex && (
+                {knightPosition.y === yAxiosIndex && knightPosition.x === xAxiosIndex && (
                     <img className="w-full h-full" src="/strategy.png" alt=""/>
                 )}
             </div>
@@ -72,15 +72,15 @@ const ChessBoard = () => {
     return (
         <div className="board-wrapper pt-8">
             <div className="board">
-                {matData.map((mat, rowIndex)=>(
-                    <div className="board-row" key={"row"+rowIndex} >
-                        {mat.map((num, colIndex) => (
-                            <div key={"col"+colIndex} className={`cell 
+                {matData.map((mat, yAxios)=>(
+                    <div className="board-row" key={"row"+yAxios} >
+                        {mat.map((num, xAxios) => (
+                            <div key={"col"+xAxios} className={`cell 
                                 ${num ? "cell-even" : "cell-odd"}
-                                          ${markPossibleMove(rowIndex, colIndex )} 
+                                          ${markPossibleMove( xAxios, yAxios )} 
                             `}
-                                 onClick={()=>handleSetKnightPosition(rowIndex, colIndex)}>
-                                {renderKnight(rowIndex, colIndex)}
+                                 onClick={()=>handleSetKnightPosition(xAxios, yAxios )}>
+                                {renderKnight(xAxios, yAxios)}
                             </div>
                         ))}
                     </div>
